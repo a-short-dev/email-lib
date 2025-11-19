@@ -17,12 +17,6 @@ importers:
 
   apps/builder:
     dependencies:
-      '@weaver/email-components':
-        specifier: workspace:*
-        version: link:../../packages/components
-      '@weaver/email-core':
-        specifier: workspace:*
-        version: link:../../packages/core
       next:
         specifier: 16.0.3
         version: 16.0.3(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -32,6 +26,12 @@ importers:
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
+      weaver-email-components:
+        specifier: workspace:*
+        version: link:../../packages/components
+      weaver-email-core:
+        specifier: workspace:*
+        version: link:../../packages/core
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -109,15 +109,15 @@ importers:
 
   packages/components:
     dependencies:
-      '@weaver/email-core':
-        specifier: workspace:*
-        version: link:../core
       react:
         specifier: ^19.0.0
         version: 19.2.0
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
+      weaver-email-core:
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       '@types/react':
         specifier: ^19.0.0

@@ -1,5 +1,5 @@
 {
-  "name": "@weaver/email-vue",
+  "name": "weaver-email-vue",
   "version": "0.0.1",
   "description": "Vue components for Weaver Email Library",
   "main": "./dist/index.js",

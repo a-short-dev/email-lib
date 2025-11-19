@@ -1,5 +1,5 @@
 {
-  "name": "@weaver/email-integrations",
+  "name": "weaver-email-integrations",
   "version": "0.0.1",
   "description": "Integrations for Weaver Email Library",
   "main": "./dist/index.js",

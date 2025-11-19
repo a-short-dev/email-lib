@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { tw } from '@weaver/email-core';
+import { tw } from 'weaver-email-core';
+
 
 export interface ButtonProps {
   href: string;

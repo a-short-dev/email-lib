@@ -1,5 +1,5 @@
 {
-  "name": "@weaver/email-components",
+  "name": "weaver-email-components",
   "version": "0.0.1",
   "description": "React components for Weaver Email",
   "main": "dist/index.js",
@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@weaver/email-core": "workspace:*",
+    "weaver-email-core": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

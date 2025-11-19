@@ -12,8 +12,8 @@
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "@weaver/email-components": "workspace:*",
-    "@weaver/email-core": "workspace:*"
+    "weaver-email-components": "workspace:*",
+    "weaver-email-core": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
