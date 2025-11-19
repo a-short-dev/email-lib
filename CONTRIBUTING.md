@@ -121,7 +121,7 @@ weaver/
    ```
 
 6. **Open a Pull Request**
-   * Go to the [Weaver repository](https://github.com/YOUR_ORG/weaver)
+   * Go to the [Weaver repository](https://github.com/a-short-dev/email-lib)
    * Click "New Pull Request"
    * Select your branch
    * Fill in the PR template
@@ -235,6 +235,6 @@ Feel free to:
 Contributors are recognized in:
 * Our [README](README.md)
 * Release notes
-* The [contributors page](https://github.com/YOUR_ORG/weaver/graphs/contributors)
+* The [contributors page](https://github.com/a-short-dev/email-lib/graphs/contributors)
 
 Thank you for contributing to Weaver! 🎉

@@ -68,9 +68,16 @@ import { Html, Button } from '@weaver/email-vue';
 Write Tailwind classes, get email-safe inline styles automatically.
 
 ```tsx
-<Text className="text-xl font-bold text-blue-600 mb-4">
+<Text className="text-xl font-bold text-blue-600/80 mb-4">
   Tailwind just works!
 </Text>
+
+// Supports:
+// ✅ 220+ colors (all Tailwind shades)
+// ✅ Arbitrary values: w-[123px], text-[#abc]
+// ✅ Opacity modifiers: bg-blue-500/50
+// ✅ Negative values: -m-4
+// ✅ Display, typography, spacing, borders
 ```
 
 ### 🛠️ Visual Builder
@@ -187,7 +194,7 @@ We love contributions! Please read our [Contributing Guide](./CONTRIBUTING.md) t
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_ORG/weaver.git
+git clone https://github.com/a-short-dev/email-lib.git
 cd weaver
 
 # Install dependencies
@@ -220,7 +227,7 @@ pnpm --filter landing dev
 
 - 💬 [Discord](https://discord.gg/YOUR_INVITE) - Chat with the community
 - 🐦 [Twitter](https://twitter.com/YOUR_HANDLE) - Follow for updates
-- 🐛 [Issues](https://github.com/YOUR_ORG/weaver/issues) - Report bugs or request features
+- 🐛 [Issues](https://github.com/a-short-dev/email-lib/issues) - Report bugs or request features
 
 ## License
 
@@ -231,7 +238,7 @@ MIT © [Your Name](https://github.com/YOUR_ORG)
 <div align="center">
   <p>Built with ❤️ by the Weaver community</p>
   <p>
-    <a href="https://github.com/YOUR_ORG/weaver">GitHub</a> •
+    <a href="https://github.com/a-short-dev/email-lib">GitHub</a> •
     <a href="https://YOUR_SITE.com">Website</a> •
     <a href="https://YOUR_SITE.com/docs">Docs</a>
   </p>

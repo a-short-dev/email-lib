@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import * as React from 'react';
-import { render } from '@weaver/email-core';
+import { render } from 'weaver-email-core';
 import { Button, Html, Text } from './index';
 
 describe('Components', () => {
