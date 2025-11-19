@@ -1,5 +1,5 @@
-import { Html, Button, Text, render } from '@weaver/email-core';
-import { Button as EmailButton, Text as EmailText } from '@weaver/email-components';
+import { Html, Button, Text, render } from 'weaver/email-core';
+import { Button as EmailButton, Text as EmailText } from 'weaver/email-components';
 
 // Example 1: Using Tailwind CSS classes
 const TailwindEmail = () => (

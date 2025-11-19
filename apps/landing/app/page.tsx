@@ -104,7 +104,7 @@ export default function Home() {
               Start Building <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="flex items-center gap-4 text-gray-400 text-sm font-mono">
-              <span className="px-3 py-1 bg-white/5 rounded border border-white/10">npm install @weaver/email</span>
+              <span className="px-3 py-1 bg-white/5 rounded border border-white/10">npm i weaver-email-core</span>
               <button className="hover:text-white transition-colors"><CopyIcon /></button>
             </div>
           </motion.div>

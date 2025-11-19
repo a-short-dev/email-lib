@@ -3,10 +3,10 @@
   <p><strong>Build beautiful, responsive emails with React or Vue.js</strong></p>
   
   <p>
-    <a href="https://github.com/YOUR_ORG/weaver/actions"><img src="https://github.com/YOUR_ORG/weaver/workflows/CI/badge.svg" alt="CI Status"></a>
+    <a href="https://github.com/a-short-dev/email-lib/actions"><img src="https://github.com/a-short-dev/email-lib/workflows/CI/badge.svg" alt="CI Status"></a>
     <a href="https://www.npmjs.com/package/@weaver/email-core"><img src="https://img.shields.io/npm/v/@weaver/email-core.svg" alt="npm version"></a>
-    <a href="https://github.com/YOUR_ORG/weaver/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-    <a href="https://github.com/YOUR_ORG/weaver"><img src="https://img.shields.io/github/stars/YOUR_ORG/weaver?style=social" alt="GitHub Stars"></a>
+    <a href="https://github.com/a-short-dev/email-lib/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+    <a href="https://github.com/a-short-dev/email-lib"><img src="https://img.shields.io/github/stars/a-short-dev/email-lib?style=social" alt="GitHub Stars"></a>
   </p>
 
   <p>
