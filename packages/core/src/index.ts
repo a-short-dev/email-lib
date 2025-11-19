@@ -15,3 +15,5 @@ export const render = (element: React.ReactElement, options?: RenderOptions): st
 
   return `<!DOCTYPE html>${html}`;
 };
+
+export { tw } from './tw';

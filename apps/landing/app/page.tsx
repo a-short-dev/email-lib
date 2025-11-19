@@ -1,353 +1,363 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRight, Code, Layout, Zap, Check, MousePointer2, GripVertical, X } from "lucide-react";
-import { motion } from "framer-motion";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import { ArrowRight, Code, Layout, Zap, Check, MousePointer2, GripVertical, X, Terminal, Globe, Shield, Smartphone, Sparkles, Play } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white overflow-x-hidden relative">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-[0.03] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-gray-100 to-transparent"
-        />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-multiply"></div>
-      </div>
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
 
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const position = useTransform(scrollYProgress, (pos) => {
+    return pos === 1 ? "relative" : "fixed";
+  });
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-white selection:text-black overflow-x-hidden">
       {/* Navigation */}
-      <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100"
-      >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tighter">
+      <nav className="fixed top-0 w-full z-50 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold tracking-tighter flex items-center gap-2">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-black">
+              <Globe className="w-5 h-5" />
+            </div>
             Weaver
           </Link>
-          <div className="flex items-center gap-8 text-sm font-medium text-gray-600">
-            <Link href="#features" className="hover:text-black transition-colors">Features</Link>
-            <Link href="#comparison" className="hover:text-black transition-colors">Comparison</Link>
-            <Link href="https://github.com" className="hover:text-black transition-colors">GitHub</Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+            <Link href="/docs" className="hover:text-white transition-colors">Docs</Link>
+            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
+            <Link href="/builder" className="hover:text-white transition-colors">Builder</Link>
+            <Link href="#comparison" className="hover:text-white transition-colors">Comparison</Link>
+            <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/builder"
+              className="hidden md:flex px-5 py-2 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
+            >
+              Open Builder
+            </Link>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
+      <section ref={targetRef} className="h-screen relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-[#050505] to-[#050505]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        
         <motion.div 
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-          className="max-w-4xl mx-auto text-center relative z-10"
+          style={{ opacity, scale }}
+          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
         >
           <motion.div
-            variants={fadeInUp}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-sm font-medium text-gray-600">Under Development — Alpha Coming Soon</span>
+            <span className="text-sm font-medium text-gray-300">v1.0 Public Alpha is Live</span>
           </motion.div>
+          
           <motion.h1 
-            variants={fadeInUp}
-            className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 leading-[1.1]"
           >
-            Stop fighting with <br />
-            <span className="text-gray-400 bg-clip-text text-transparent bg-gradient-to-b from-gray-400 to-gray-600">email HTML.</span>
+            Email development, <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-white animate-gradient-x">
+              reimagined.
+            </span>
           </motion.h1>
+          
           <motion.p 
-            variants={fadeInUp}
-            className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            We've all been there. Nested tables, inline styles, Outlook bugs. 
-            Weaver lets you build emails like modern web apps—with React components and a visual builder that actually works.
+            Build beautiful, responsive emails with <strong className="text-white">React or Vue</strong> components. 
+            Export to HTML that works everywhere. <strong className="text-white">100% open source</strong>, zero lock-in.
           </motion.p>
+          
           <motion.div 
-            variants={fadeInUp}
-            className="flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-6"
           >
             <Link 
               href="/docs" 
-              className="group px-8 py-4 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-all flex items-center gap-2"
+              className="group px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-gray-200 transition-all flex items-center gap-2"
             >
-              Start Building <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Start Building <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <div className="flex items-center gap-4 text-gray-400 text-sm font-mono">
+              <span className="px-3 py-1 bg-white/5 rounded border border-white/10">npm install @weaver/email</span>
+              <button className="hover:text-white transition-colors"><CopyIcon /></button>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Abstract 3D-ish Background Elements */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none animate-float"></div>
+      </section>
+
+      {/* Social Proof */}
+      <section className="py-12 border-y border-white/5 bg-black/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-500 mb-8 font-medium uppercase tracking-widest">Trusted by developers at</p>
+          <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+             {/* Placeholder Logos */}
+             {['Acme Corp', 'GlobalBank', 'Nebula', 'Vertex', 'Orbit'].map((name) => (
+               <div key={name} className="text-xl font-bold font-mono text-white">{name}</div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bento Grid Features */}
+      <section id="features" className="py-32 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Everything you need. <br /><span className="text-gray-500">Nothing you don't.</span></h2>
+            <p className="text-xl text-gray-400 max-w-2xl">Weaver provides the primitives to build world-class emails without the legacy baggage.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+            {/* Card 1: Visual Builder */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="md:col-span-2 bg-[#111] rounded-3xl p-8 border border-white/5 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="mb-auto">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-400">
+                    <Layout className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-2">Visual Builder</h3>
+                  <p className="text-gray-400 text-lg">Drag, drop, and edit. Sync changes directly to your codebase.</p>
+                </div>
+                <div className="mt-8 rounded-xl border border-white/10 bg-[#0a0a0a] p-4 shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500">
+                  <div className="flex gap-2 mb-4">
+                    <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="h-20 bg-white/5 rounded-lg w-full animate-pulse"></div>
+                    <div className="flex gap-4">
+                      <div className="h-32 bg-white/5 rounded-lg w-1/2 animate-pulse delay-75"></div>
+                      <div className="h-32 bg-white/5 rounded-lg w-1/2 animate-pulse delay-150"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2: TypeScript */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-[#111] rounded-3xl p-8 border border-white/5 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-400">
+                  <Code className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Type Safe</h3>
+                <p className="text-gray-400 mb-8">Full TypeScript support out of the box. Catch errors before you send.</p>
+                <div className="font-mono text-xs text-blue-300 bg-blue-900/20 p-4 rounded-lg border border-blue-500/20">
+                  interface EmailProps {'{'}<br/>
+                  &nbsp;&nbsp;firstName: string;<br/>
+                  &nbsp;&nbsp;loginUrl: string;<br/>
+                  {'}'}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Framework Agnostic */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="bg-[#111] rounded-3xl p-8 border border-white/5 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-green-500/20 rounded-2xl flex items-center justify-center mb-6 text-green-400">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">React & Vue</h3>
+                <p className="text-gray-400 mb-8">First-class support for React and Vue.js. Same components, same API, your choice of framework.</p>
+                <div className="flex gap-4">
+                  <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 text-sm font-mono">React</div>
+                  <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 text-sm font-mono">Vue 3</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 4: Integrations */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="md:col-span-2 bg-[#111] rounded-3xl p-8 border border-white/5 relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
+                <div className="flex-1">
+                  <div className="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 text-purple-400">
+                    <Terminal className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-2">Seamless Integrations</h3>
+                  <p className="text-gray-400 text-lg">Connect with your favorite providers in seconds. Resend, Nodemailer, AWS SES, and more.</p>
+                </div>
+                <div className="flex-1 w-full">
+                  <div className="bg-[#0a0a0a] rounded-xl border border-white/10 p-6 font-mono text-sm text-gray-300 shadow-2xl">
+                    <div className="flex items-center gap-2 mb-4 text-gray-500">
+                      <Terminal className="w-4 h-4" />
+                      <span>send-email.ts</span>
+                    </div>
+                    <div className="space-y-2">
+                      <p><span className="text-purple-400">await</span> resend.send({'{'}</p>
+                      <p className="pl-4">from: <span className="text-green-400">'onboarding@resend.dev'</span>,</p>
+                      <p className="pl-4">to: <span className="text-green-400">'user@gmail.com'</span>,</p>
+                      <p className="pl-4">subject: <span className="text-green-400">'Hello World'</span>,</p>
+                      <p className="pl-4">react: <span className="text-blue-400">&lt;WelcomeEmail /&gt;</span></p>
+                      <p>{'}'});</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Comparison */}
+      <section id="comparison" className="py-32 px-6 bg-[#0a0a0a] border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">The Old Way vs. The Weaver Way</h2>
+            <p className="text-xl text-gray-400">See the difference for yourself.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Old Way */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+              <div className="relative bg-[#111] rounded-xl border border-white/5 p-8 h-full">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <h3 className="text-xl font-bold text-gray-300">HTML Tables</h3>
+                </div>
+                <div className="font-mono text-xs text-gray-500 space-y-1 overflow-hidden opacity-50">
+                  <p>&lt;table role="presentation" border="0"&gt;</p>
+                  <p>&nbsp;&nbsp;&lt;tr&gt;</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;td style="padding: 20px;"&gt;</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Ghost tables for Outlook --&gt;</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--[if mso | IE]&gt;</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table role="presentation"&gt;</p>
+                  <p>...</p>
+                </div>
+                <div className="mt-8 text-red-400 flex items-center gap-2">
+                  <X className="w-5 h-5" />
+                  <span>Painful to maintain</span>
+                </div>
+              </div>
+            </div>
+
+            {/* New Way */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+              <div className="relative bg-[#111] rounded-xl border border-white/5 p-8 h-full">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <h3 className="text-xl font-bold text-white">React Components</h3>
+                </div>
+                <div className="font-mono text-sm text-gray-300 space-y-2">
+                  <p><span className="text-blue-400">&lt;Container&gt;</span></p>
+                  <p>&nbsp;&nbsp;<span className="text-purple-400">&lt;Section&gt;</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">&lt;Text&gt;</span>Hello World<span className="text-green-400">&lt;/Text&gt;</span></p>
+                  <p>&nbsp;&nbsp;<span className="text-purple-400">&lt;/Section&gt;</span></p>
+                  <p><span className="text-blue-400">&lt;/Container&gt;</span></p>
+                </div>
+                <div className="mt-8 text-green-400 flex items-center gap-2">
+                  <Check className="w-5 h-5" />
+                  <span>Joy to write</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 px-6 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-[#050505] to-[#050505]" />
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter">Ready to ship?</h2>
+          <p className="text-xl text-gray-400 mb-4">Join developers building better emails with open source tools.</p>
+          <p className="text-sm text-gray-500 mb-12">MIT Licensed • Free Forever • Community Driven</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <Link 
+              href="/docs" 
+              className="px-10 py-5 bg-white text-black rounded-full font-bold text-xl hover:bg-gray-200 transition-all"
+            >
+              Get Started Now
             </Link>
             <Link 
               href="https://github.com" 
-              className="px-8 py-4 bg-gray-100 text-black rounded-full font-medium hover:bg-gray-200 transition-all"
+              className="px-10 py-5 bg-white/5 text-white border border-white/10 rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center gap-2"
             >
-              View on GitHub
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              Star on GitHub
             </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Feature 1: Developer First (Text + Code) */}
-      <section id="features" className="py-24 px-6 bg-black text-white overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-1"
-          >
-            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-              <Code className="w-6 h-6 text-white" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Code that feels like <br />
-              <span className="text-gray-400">modern web development.</span>
-            </h2>
-            <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-              Forget about `tr`, `td`, and `ghost tables`. Write clean, composable React components. 
-              We handle the messy HTML conversion so you can focus on the experience.
-            </p>
-            <ul className="space-y-4 text-gray-300">
-              {[
-                "Full TypeScript support",
-                "Component reusability",
-                "Zero-config build process"
-              ].map((item, i) => (
-                <motion.li 
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 w-full max-w-xl"
-          >
-            <div className="rounded-xl overflow-hidden bg-gray-900 border border-gray-800 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-900/50">
-                <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
-                <div className="ml-2 text-xs text-gray-500 font-mono">email.tsx</div>
-              </div>
-              <div className="p-6 overflow-x-auto">
-                <pre className="font-mono text-sm leading-relaxed text-gray-300">
-                  <code>{`import { Html, Button, Text } from '@weaver/email';
-
-export const WelcomeEmail = ({ name }) => (
-  <Html>
-    <Text>
-      Welcome back, {name}!
-    </Text>
-    <Button href="https://weaver.com">
-      Get Started
-    </Button>
-  </Html>
-);`}</code>
-                </pre>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Feature 2: Visual Builder (Text + Mock) */}
-      <section className="py-24 px-6 bg-gray-50 overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16">
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-1"
-          >
-            <div className="w-12 h-12 bg-black/5 rounded-xl flex items-center justify-center mb-6">
-              <Layout className="w-6 h-6 text-black" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Bridge the gap between <br />
-              <span className="text-gray-400">design and code.</span>
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Marketing teams shouldn't need to ask developers for every copy change. 
-              Our visual builder lets anyone edit emails safely, with changes syncing directly to your codebase.
-            </p>
-            <ul className="space-y-4 text-gray-600">
-              {[
-                "Drag & Drop interface",
-                "Real-time preview",
-                "Two-way sync with code"
-              ].map((item, i) => (
-                <motion.li 
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-6 h-6 rounded-full bg-black/5 flex items-center justify-center text-xs">
-                    <Check className="w-3 h-3 text-black" />
-                  </div>
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 w-full max-w-xl"
-          >
-            <div className="rounded-xl overflow-hidden bg-white border border-gray-200 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-              {/* Mock Builder UI */}
-              <div className="flex h-80">
-                {/* Sidebar */}
-                <div className="w-16 border-r border-gray-100 bg-gray-50 flex flex-col items-center py-4 gap-4">
-                  <div className="w-8 h-8 rounded bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-                    <MousePointer2 className="w-4 h-4 text-gray-400" />
-                  </div>
-                  <div className="w-8 h-8 rounded hover:bg-white hover:border hover:border-gray-200 flex items-center justify-center transition-all">
-                    <Layout className="w-4 h-4 text-gray-400" />
-                  </div>
-                </div>
-                {/* Canvas */}
-                <div className="flex-1 bg-gray-100 p-6 flex items-center justify-center relative">
-                  <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-medium text-gray-500 shadow-sm">
-                    Welcome Email
-                  </div>
-                  <div className="w-full max-w-xs bg-white rounded-lg shadow-sm p-6 space-y-4 border border-gray-200">
-                    <div className="h-4 w-2/3 bg-gray-100 rounded animate-pulse"></div>
-                    <div className="space-y-2">
-                      <div className="h-3 w-full bg-gray-50 rounded"></div>
-                      <div className="h-3 w-5/6 bg-gray-50 rounded"></div>
-                    </div>
-                    <div className="h-8 w-full bg-black rounded flex items-center justify-center text-white text-xs font-medium">
-                      Button
-                    </div>
-                  </div>
-                  {/* Floating Palette */}
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-lg shadow-lg border border-gray-100 flex flex-col gap-2">
-                    <div className="w-8 h-8 bg-gray-50 rounded flex items-center justify-center cursor-move">
-                      <GripVertical className="w-4 h-4 text-gray-400" />
-                    </div>
-                    <div className="w-8 h-8 bg-gray-50 rounded flex items-center justify-center cursor-move">
-                      <GripVertical className="w-4 h-4 text-gray-400" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Comparison Section */}
-      <section id="comparison" className="py-24 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Why developers choose Weaver
-            </h2>
-            <p className="text-lg text-gray-600">
-              Open source, modern, and built for the future.
-            </p>
-          </motion.div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr>
-                  <th className="p-4 border-b-2 border-gray-100 w-1/4"></th>
-                  <th className="p-4 border-b-2 border-black bg-gray-50 rounded-t-xl w-1/4 text-center font-bold text-lg">Weaver</th>
-                  <th className="p-4 border-b-2 border-gray-100 w-1/4 text-center font-medium text-gray-500">React Email</th>
-                  <th className="p-4 border-b-2 border-gray-100 w-1/4 text-center font-medium text-gray-500">MJML</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { feature: "React Components", weaver: true, re: true, mjml: false },
-                  { feature: "Visual Builder", weaver: true, re: false, mjml: false },
-                  { feature: "TypeScript Support", weaver: true, re: true, mjml: false },
-                  { feature: "Two-way Sync", weaver: true, re: false, mjml: false },
-                  { feature: "Open Source", weaver: true, re: true, mjml: true },
-                ].map((row, i) => (
-                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                    <td className="p-4 font-medium text-gray-900">{row.feature}</td>
-                    <td className="p-4 text-center bg-gray-50/30">
-                      {row.weaver ? <Check className="w-5 h-5 text-black mx-auto" /> : <X className="w-5 h-5 text-gray-300 mx-auto" />}
-                    </td>
-                    <td className="p-4 text-center">
-                      {row.re ? <Check className="w-5 h-5 text-gray-400 mx-auto" /> : <X className="w-5 h-5 text-gray-300 mx-auto" />}
-                    </td>
-                    <td className="p-4 text-center">
-                      {row.mjml ? <Check className="w-5 h-5 text-gray-400 mx-auto" /> : <X className="w-5 h-5 text-gray-300 mx-auto" />}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-gray-500 text-sm">
+      <footer className="py-12 px-6 border-t border-white/5 bg-[#050505]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-white rounded flex items-center justify-center text-black">
+              <Globe className="w-3 h-3" />
+            </div>
+            <span className="font-bold text-lg tracking-tight">Weaver</span>
+          </div>
+          <div className="flex gap-8 text-sm text-gray-500">
+            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-white transition-colors">Twitter</Link>
+            <Link href="#" className="hover:text-white transition-colors">GitHub</Link>
+          </div>
+          <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} Weaver. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="#" className="hover:text-black transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-black transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-black transition-colors">Twitter</Link>
-          </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+function CopyIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
   );
 }
