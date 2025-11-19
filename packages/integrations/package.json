@@ -16,10 +16,27 @@
     "integrations",
     "resend",
     "nodemailer",
-    "weaver"
+    "weaver",
+    "typescript"
   ],
   "author": "Weaver",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_ORG/weaver.git",
+    "directory": "packages/integrations"
+  },
+  "homepage": "https://github.com/YOUR_ORG/weaver#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_ORG/weaver/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "resend": "^3.0.0",
     "nodemailer": "^6.9.0"

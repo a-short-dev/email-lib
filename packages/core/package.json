@@ -11,9 +11,25 @@
     "lint": "biome check .",
     "test": "vitest run"
   },
-  "keywords": ["email", "react", "html"],
+  "keywords": ["email", "react", "html", "tailwind", "vue", "typescript"],
   "author": "Weaver",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_ORG/weaver.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/YOUR_ORG/weaver#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_ORG/weaver/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

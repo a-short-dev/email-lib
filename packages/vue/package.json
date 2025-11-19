@@ -14,10 +14,28 @@
   "keywords": [
     "vue",
     "email",
-    "weaver"
+    "weaver",
+    "tailwind",
+    "typescript"
   ],
   "author": "Weaver",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_ORG/weaver.git",
+    "directory": "packages/vue"
+  },
+  "homepage": "https://github.com/YOUR_ORG/weaver#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_ORG/weaver/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
