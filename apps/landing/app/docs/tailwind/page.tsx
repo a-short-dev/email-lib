@@ -1,8 +1,8 @@
 export default function TailwindPage() {
   return (
-    <div className="prose prose-gray max-w-none">
+    <div className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold tracking-tight mb-6">Tailwind CSS Support</h1>
-      <p className="text-xl text-gray-600 leading-relaxed mb-8">
+      <p className="text-xl text-gray-400 leading-relaxed mb-8">
         Use Tailwind CSS classes in your email components. They'll be automatically converted to inline styles for maximum email client compatibility.
       </p>
 
@@ -13,7 +13,7 @@ export default function TailwindPage() {
       </p>
 
       <h2>Usage</h2>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto">
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto border border-white/10">
         <pre>{`import { Html, Container, Heading, Text, Button } from 'weaver-email-components';
 
 export const WelcomeEmail = () => (
@@ -48,7 +48,7 @@ export const WelcomeEmail = () => (
 
       <h3>✅ Arbitrary Values</h3>
       <p>Use custom values with square brackets:</p>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 border border-white/10">
         <pre>{`<Text className="w-[123px] text-[#abc123] p-[2rem]">
   Custom values!
 </Text>`}</pre>
@@ -56,7 +56,7 @@ export const WelcomeEmail = () => (
 
       <h3>✅ Opacity Modifiers</h3>
       <p>Add transparency to any color:</p>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 border border-white/10">
         <pre>{`<div className="bg-blue-500/50 text-red-600/75">
   50% opacity background, 75% opacity text
 </div>`}</pre>
@@ -64,7 +64,7 @@ export const WelcomeEmail = () => (
 
       <h3>✅ Negative Values</h3>
       <p>Use negative margins:</p>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 border border-white/10">
         <pre>{`<div className="-mt-4 -ml-2">Negative margins</div>`}</pre>
       </div>
 
@@ -118,7 +118,7 @@ export const WelcomeEmail = () => (
 
       <h2>Advanced Examples</h2>
       
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto">
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto border border-white/10">
         <pre>{`// Opacity modifiers
 <div className="bg-blue-500/50 text-white/90">
   Semi-transparent background

@@ -1,37 +1,49 @@
+'use client';
+
+import { useState } from 'react';
+import { CodeBlock } from '../../components/CodeBlock';
+
+
 export default function InstallationPage() {
+  const [manager, setManager] = useState<'npm' | 'pnpm' | 'yarn' | 'bun'>('npm');
+
+  const commands = {
+    npm: 'npm install weaver-email-core weaver-email-components',
+    pnpm: 'pnpm add weaver-email-core weaver-email-components',
+    yarn: 'yarn add weaver-email-core weaver-email-components',
+    bun: 'bun add weaver-email-core weaver-email-components'
+  };
+
   return (
-    <div className="prose prose-gray max-w-none">
+    <div className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold tracking-tight mb-6">Installation</h1>
-      <p className="text-xl text-gray-600 leading-relaxed mb-8">
+      <p className="text-xl text-gray-400 leading-relaxed mb-8">
         Get started with Weaver in your project.
       </p>
 
-      <h2>Prerequisites</h2>
-      <p>Weaver works with React 18+ or Vue 3+. It is designed to be framework agnostic on the server side.</p>
-
-      <h2>Automatic Installation</h2>
-      <p>The easiest way to get started is to install the core package and components.</p>
-
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
-        npm install @weaver/email-core @weaver/email-components
+      <div className="flex gap-4 mb-6 border-b border-white/10 pb-2 overflow-x-auto">
+        {(['npm', 'pnpm', 'yarn', 'bun'] as const).map((pkg) => (
+          <button
+            key={pkg}
+            onClick={() => setManager(pkg)}
+            className={`pb-2 text-sm font-medium transition-colors relative px-2 ${
+              manager === pkg ? 'text-blue-400' : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            {pkg}
+            {manager === pkg && (
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400" />
+            )}
+          </button>
+        ))}
       </div>
 
-      <p>If you are using Vue.js:</p>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
-        npm install @weaver/email-vue
-      </div>
+      <CodeBlock code={commands[manager]} />
 
-      <h2>Manual Setup</h2>
+      <h2>Next Steps</h2>
       <p>
-        Weaver components are just regular React/Vue components. You can import them and use them in your application.
-        To render them to HTML for sending, use the <code>render</code> function from the core package.
+        Once installed, you can start building your email templates. Check out the <a href="/docs/components/html" className="text-blue-400 hover:text-blue-300">Components</a> section to learn more.
       </p>
-
-      <h3>Next Steps</h3>
-      <ul>
-        <li>Explore <a href="/docs/components/html" className="text-black underline">Components</a></li>
-        <li>Check out <a href="/docs/integrations/resend" className="text-black underline">Integrations</a></li>
-      </ul>
     </div>
   );
 }

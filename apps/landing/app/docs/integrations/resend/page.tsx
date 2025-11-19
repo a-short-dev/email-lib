@@ -1,19 +1,19 @@
 export default function ResendPage() {
   return (
-    <div className="prose prose-gray max-w-none">
+    <div className="prose prose-invert max-w-none">
       <h1 className="text-4xl font-bold tracking-tight mb-6">Resend Integration</h1>
-      <p className="text-xl text-gray-600 leading-relaxed mb-8">
+      <p className="text-xl text-gray-400 leading-relaxed mb-8">
         Send emails using Resend.
       </p>
 
       <h2>Installation</h2>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4">
-        npm install @weaver/email-integrations resend
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 border border-white/10">
+        npm install weaver-email-integrations resend
       </div>
 
       <h2>Usage</h2>
-      <div className="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto">
-        <pre>{`import { ResendAdapter } from '@weaver/email-integrations';
+      <div className="bg-white/10 text-white p-4 rounded-lg font-mono text-sm my-4 overflow-x-auto border border-white/10">
+        <pre>{`import { ResendAdapter } from 'weaver-email-integrations';
 import { Resend } from 'resend';
 import { MyEmail } from './emails/my-email';
 

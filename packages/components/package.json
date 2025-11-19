@@ -1,6 +1,6 @@
 {
   "name": "weaver-email-components",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "React components for Weaver Email",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

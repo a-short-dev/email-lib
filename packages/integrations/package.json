@@ -1,6 +1,6 @@
 {
   "name": "weaver-email-integrations",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "Integrations for Weaver Email Library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
