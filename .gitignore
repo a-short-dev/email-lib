@@ -1,0 +1,31 @@
+.ideas/
+
+
+# Node Modules
+node_modules/
+
+
+# Compiled Output
+dist/
+build/
+out/
+.next/
+
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+# Environment Files
+.env
+.env.local
+.env.staging
+.env.testing
+.env.production
+.env.development

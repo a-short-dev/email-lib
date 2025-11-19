@@ -1,0 +1,27 @@
+{
+  "name": "@weaver/email-core",
+  "version": "0.0.1",
+  "description": "Core rendering logic for Weaver Email",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "biome check .",
+    "test": "vitest run"
+  },
+  "keywords": ["email", "react", "html"],
+  "author": "Weaver",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsup": "^8.0.0",
+    "vitest": "^1.0.0"
+  }
+}

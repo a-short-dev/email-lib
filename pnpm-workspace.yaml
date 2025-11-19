@@ -1,0 +1,9 @@
+packages:
+  # All our public-facing libraries
+  - 'packages/*'
+
+  # Our internal applications (builder, docs, etc)
+  - 'apps/*'
+
+  # All examples and playgrounds
+  - 'examples/*'
