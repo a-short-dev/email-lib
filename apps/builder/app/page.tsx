@@ -1,4 +1,4 @@
-import { Button, Html, Text } from '@weaver/email-components';
+import { Button, Html, Text } from 'weaver-email-components';
 
 export default function Home() {
   return (
